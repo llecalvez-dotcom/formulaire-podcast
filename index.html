@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Rejoignez l'équipe de Talk To. Le podcast qui connecte, conversations propulsées par les étudiants.">
+    <meta property="og:title" content="Rejoindre l'aventure Talk To">
+    <meta property="og:description" content="Student-Powered Conversations. New Episode Every Month.">
+    <meta property="og:type" content="website">
+    <title>Talk To Podcast - Student-Powered Conversations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Playfair+Display:wght@900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-canvas-container">
+        <canvas id="stars"></canvas>
+    </div>
+
+    <main class="container">
+        <header class="hero">
+            <img src="Logo podcast TalkTo.png" alt="Talk To Podcast Logo" class="site-logo">
+            <h1 class="glitch" data-text="TALK TO...">TALK TO...</h1>
+            <p class="subtitle">Student-Powered Conversations.<br>New Episode Every Month.</p>
+        </header>
+
+        <form id="talkto-form" class="glass-panel" action="https://formsubmit.co/llecalvez@eugeniaschool.com"
+            method="POST">
+            <!-- Configuration pour FormSubmit -->
+            <input type="hidden" name="_subject" value="Nouvelle candidature Talk To !">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://talkto-podcast.netlify.app/thanks.html">
+            <!-- Optional redirection if desired later -->
+
+            <div class="form-group">
+                <label for="full_name">Identité</label>
+                <input type="text" id="full_name" name="full_name" placeholder="Prénom & Nom" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Contact</label>
+                <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="target_role">Poste visé</label>
+                <input type="text" id="target_role" name="target_role" placeholder="Ex: Hôte, Production, Com..."
+                    required>
+                <p class="field-hint">Quel rôle voulez-vous jouer dans la conversation ?</p>
+            </div>
+
+            <div class="form-group">
+                <label for="motivation">Le Pitch</label>
+                <textarea id="motivation" name="motivation" placeholder="Pourquoi rejoindre l'équipe Talk To ?" required
+                    rows="4"></textarea>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit" class="cta-button">
+                    <span class="btn-text">ENVOYER LA FICHE</span>
+                    <span class="btn-shine"></span>
+                </button>
+            </div>
+        </form>
+
+        <div id="success-message" class="hidden success-panel">
+            <h2>MESSAGE REÇU !</h2>
+            <p>On vous recontacte bientôt.</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

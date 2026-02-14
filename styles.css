@@ -1,0 +1,307 @@
+:root {
+    --bg-paper: #f0f0f0;
+    --text-ink: #111111;
+    --accent-yellow: #F2C94C;
+    --tape-color: #ffd700;
+    --shadow-hard: 8px 8px 0px 0px #111;
+    --border-thick: 3px solid #111;
+    --border-thin: 2px solid #111;
+    --font-heading: 'Playfair Display', serif;
+    --font-hand: 'Permanent Marker', cursive;
+    --font-mono: 'Space Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-paper);
+    background-image:
+        radial-gradient(#ccc 1px, transparent 1px),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.02) 10px, rgba(0, 0, 0, 0.02) 20px);
+    background-size: 20px 20px, 100% 100%;
+    color: var(--text-ink);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.background-canvas-container {
+    display: none;
+    /* Remove canvas background */
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    position: relative;
+    z-index: 10;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* Tape Effect on Title */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110%;
+    height: 40px;
+    background: var(--tape-color);
+    transform: translate(-50%, -50%) rotate(-2deg);
+    z-index: -1;
+    opacity: 0.8;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.site-logo {
+    display: block;
+    max-width: 150px;
+    margin: 0 auto 10px;
+    /* Removed filter invert so it's black */
+    mix-blend-mode: multiply;
+    /* Make white transparent if logo has white bg */
+    transform: rotate(3deg);
+    transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+h1.glitch {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--text-ink);
+    text-transform: uppercase;
+    line-height: 0.9;
+    background: none;
+    -webkit-text-fill-color: initial;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+    transform: rotate(2deg);
+    margin-bottom: 15px;
+}
+
+h1.glitch::before,
+h1.glitch::after {
+    display: none;
+    /* Remove glitch effect */
+}
+
+.subtitle {
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    color: #333;
+    background: #fff;
+    display: inline-block;
+    padding: 5px 15px;
+    border: var(--border-thin);
+    transform: rotate(-1.5deg);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Paper Form Style */
+form {
+    background: #fff;
+    border: var(--border-thick);
+    padding: 40px;
+    box-shadow: var(--shadow-hard);
+    transform: rotate(-1deg);
+    position: relative;
+    /* Torn paper texture or just noise */
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Sticker/Tape decorations */
+form::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    /* Tape looks like it's holding the paper */
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-ink);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 15px;
+    background: #FFFEF0;
+    /* Slightly yellowed paper */
+    border: var(--border-thin);
+    border-radius: 0;
+    color: var(--text-ink);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    background: #fff;
+    box-shadow: 4px 4px 0px var(--accent-yellow);
+    transform: translate(-2px, -2px);
+}
+
+.field-hint {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #555;
+    margin-top: 5px;
+    font-family: var(--font-hand);
+    /* Handwritten hint */
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cta-button {
+    width: 100%;
+    padding: 18px;
+    border: var(--border-thick);
+    border-radius: 0;
+    background: var(--accent-yellow);
+    color: var(--text-ink);
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 6px 6px 0px #000;
+    transition: all 0.1s ease;
+    overflow: visible;
+}
+
+.cta-button:active {
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+.cta-button:hover {
+    background: #ffe066;
+}
+
+.btn-shine {
+    display: none;
+}
+
+/* Success Message: Stuck Note style */
+.success-panel {
+    background: var(--accent-yellow);
+    border: var(--border-thick);
+    padding: 30px;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+    transform: rotate(2deg) scale(0.9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 20;
+}
+
+.success-panel.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(2deg) scale(1);
+    pointer-events: all;
+}
+
+.success-panel h2 {
+    font-family: var(--font-hand);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    transform: rotate(-3deg);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Halftone overlay pattern for image/texture feel */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, #000 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floating-mascot {
+    position: fixed;
+    width: 60px;
+    /* Petit */
+    height: auto;
+    z-index: 1;
+    /* Above background pattern but below content */
+    opacity: 0.8;
+    pointer-events: none;
+    filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.2));
+    transition: transform 0.5s ease;
+}
+
+@media (max-width: 600px) {
+    h1.glitch {
+        font-size: 2.5rem;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    form {
+        padding: 20px;
+        transform: none;
+        /* Reset rotation on mobile for better fit */
+        box-shadow: 4px 4px 0px #000;
+    }
+
+    .hero::before {
+        width: 100%;
+    }
+}
