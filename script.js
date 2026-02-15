@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Form Handling
     const form = document.getElementById("talkto-form");
     const successPanel = document.getElementById("success-message");
-    const container = document.querySelector(".main-container");
+
 
     const submitButton = form.querySelector('button[type="submit"]');
 
-    /*
-    // AJAX disabled temporarily for activation
+
+    // AJAX form submission
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 3000);
             });
     });
-    */
 
     // Optional: Add random rotation to form elements on load for "messy desk" feel
     const inputs = document.querySelectorAll('.form-group');
